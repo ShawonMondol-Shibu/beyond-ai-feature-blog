@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, CONTACT } from "@/lib/constants";
+import Link from "next/link";
 
 function IconLinkedIn() {
   return (
@@ -22,21 +23,21 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
           {/* Wordmark */}
-          <a href={isHome ? "#" : "/"} className="flex items-baseline gap-1.5 font-display text-xl">
+          <Link href={isHome ? "#" : "/"} className="flex items-baseline gap-1.5 font-display text-xl">
             <span className="text-[var(--text-primary)]">Beyond</span>
             <span className="text-brand italic">AI</span>
-          </a>
+          </Link>
 
           {/* Nav links */}
           <nav className="flex flex-wrap gap-7 justify-center">
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={resolveHref(link.href)}
                 className="text-[13px] font-medium text-[var(--text-muted)] hover:text-brand transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 

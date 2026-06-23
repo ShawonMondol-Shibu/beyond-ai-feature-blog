@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import AnimatedSequence from "./AnimatedSequence";
+import Link from "next/link";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -80,13 +81,13 @@ export default function Hero() {
             animate="visible"
             className="flex flex-wrap gap-4 mb-14"
           >
-            <a href="#services" className="btn-primary">
+            <Link href="#services" className="btn-primary">
               See Our Services
-            </a>
-            <a href="#how-it-works" className="btn-ghost">
+            </Link>
+            <Link href="#how-it-works" className="btn-ghost">
               Watch How It Works
               <span aria-hidden>↓</span>
-            </a>
+            </Link>
           </motion.div>
 
           {/* Stats */}
@@ -99,7 +100,7 @@ export default function Hero() {
           >
             {HERO_STATS.map((stat) => (
               <div key={stat.label}>
-                <p className="font-display text-3xl text-[var(--text-primary)] tabular-nums">
+                <p className="font-display text-4xl text-[var(--text-primary)] tabular-nums">
                   {stat.value}
                 </p>
                 <p className="mt-1 font-mono text-[10px] tracking-[0.2em] text-[var(--text-muted)] uppercase">

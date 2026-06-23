@@ -4,6 +4,7 @@ import { useState } from "react";
 import Reveal from "./Reveal";
 import { CONTACT } from "@/lib/constants";
 
+
 const SERVICES_LIST = [
   "AI Systems Integration",
   "Autonomous Agent Development",
@@ -142,7 +143,7 @@ export default function Contact() {
             aria-label="Book a Discovery Call"
             className="surface-card flex items-center gap-4 p-5"
           >
-            <span className="w-12 h-12 bg-brand text-ink rounded-xl flex items-center justify-center flex-shrink-0">
+            <span className="w-12 h-12 bg-brand text-white rounded-xl flex items-center justify-center flex-shrink-0">
               <IconCalendar />
             </span>
             <span className="flex-1">

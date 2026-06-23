@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Reveal from "./Reveal";
 import { TANMOY_SERVICES, DIPTA_SERVICES } from "@/lib/constants";
+import Link from "next/link";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -32,12 +33,12 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-6 flex-1">
         {service.desc}
       </p>
-      <a
+      <Link
         href="#contact"
         className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-brand transition-transform duration-200 group-hover:gap-2.5 w-fit"
       >
         Get started <span aria-hidden>→</span>
-      </a>
+      </Link>
     </motion.div>
   );
 }

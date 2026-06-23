@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, CONTACT } from "@/lib/constants";
 import ThemeToggle from "./ThemeToggle";
+import Link from "next/link";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,24 +35,24 @@ export default function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-6 md:px-10 h-[72px] flex items-center justify-between">
         {/* Wordmark */}
-        <a
+        <Link
           href={isHome ? "#" : "/"}
           className="flex items-baseline gap-1.5 font-display text-[1.45rem] leading-none tracking-tight text-[var(--text-primary)]"
         >
           <span>Beyond</span>
           <span className="text-brand italic">AI</span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-9">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={resolveHref(link.href)}
               className="relative text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-brand after:transition-all after:duration-300 hover:after:w-full"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -62,7 +63,7 @@ export default function Navbar() {
             href={CONTACT.calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-brand px-4 py-2 text-[13px] font-semibold text-ink shadow-accent-sm transition-all duration-200 hover:shadow-accent hover:-translate-y-0.5"
+            className="rounded-lg bg-cta px-4 py-2 text-[13px] font-semibold text-white shadow-cta-sm transition-all duration-200 hover:shadow-cta hover:-translate-y-0.5"
           >
             Book a Call
           </a>
@@ -85,14 +86,14 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-[var(--bg)]/95 backdrop-blur-xl border-t border-[var(--hairline)] px-6 py-6 flex flex-col gap-5">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={resolveHref(link.href)}
               onClick={() => setMenuOpen(false)}
               className="text-sm font-medium text-[var(--text-secondary)] hover:text-brand transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
           <div className="flex items-center justify-between pt-4 border-t border-[var(--hairline)]">
             <ThemeToggle />
@@ -100,7 +101,7 @@ export default function Navbar() {
               href={CONTACT.calendlyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-brand px-4 py-2 text-[13px] font-semibold text-ink"
+              className="rounded-lg bg-cta px-4 py-2 text-[13px] font-semibold text-white"
             >
               Book a Call
             </a>

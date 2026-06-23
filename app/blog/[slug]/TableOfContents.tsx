@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Heading = {
@@ -48,7 +49,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
                 {active && (
                   <span className="absolute -left-px top-0 bottom-0 w-0.5 bg-brand" />
                 )}
-                <a
+                <Link
                   href={`#${h.id}`}
                   className={`block py-1.5 pl-4 text-[13px] leading-snug transition-colors duration-150 ${
                     active
@@ -57,7 +58,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
                   }`}
                 >
                   {h.text}
-                </a>
+                </Link>
               </li>
             );
           })}
@@ -78,13 +79,13 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
           <ul className="flex flex-col gap-2.5 mt-4">
             {headings.map((h) => (
               <li key={h.id}>
-                <a
+                <Link
                   href={`#${h.id}`}
                   onClick={() => setIsOpen(false)}
                   className="text-sm text-[var(--text-secondary)] hover:text-brand transition-colors"
                 >
                   {h.text}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

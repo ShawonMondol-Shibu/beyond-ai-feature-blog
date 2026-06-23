@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Video from "@/components/Video";
 import { getBlogBySlug, getAllBlogs, extractHeadings } from "@/lib/blog";
 import { CONTACT } from "@/lib/constants";
@@ -75,7 +74,7 @@ const components = {
     </h3>
   ),
   p: ({ children }: { children?: React.ReactNode }) => (
-    <p className="text-[17px] text-[var(--text-secondary)] leading-[1.8] mb-6">
+    <p className="text-base md:text-lg text-[var(--text-secondary)] leading-[1.8] mb-6">
       {children}
     </p>
   ),
@@ -88,7 +87,7 @@ const components = {
     </ol>
   ),
   li: ({ children }: { children?: React.ReactNode }) => (
-    <li className="flex gap-3 text-[17px] text-[var(--text-secondary)] leading-[1.8]">
+    <li className="flex gap-3 text-base md:text-lg text-[var(--text-secondary)] leading-[1.8]">
       <span className="text-brand mt-2.5 shrink-0 h-1 w-1 rounded-full bg-brand" aria-hidden />
       <span>{children}</span>
     </li>
@@ -127,12 +126,15 @@ const components = {
   hr: () => <hr className="my-12 border-[var(--hairline)]" />,
   img: ({ src, alt }: { src?: string; alt?: string }) => (
     <figure className="my-9">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={src ?? ""}
-        alt={alt ?? ""}
-        className="w-full rounded-xl border border-[var(--hairline)]"
-      />
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-[var(--hairline)]">
+        <Image
+          src={src ?? ""}
+          alt={alt ?? ""}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, 68ch"
+        />
+      </div>
       {alt && (
         <figcaption className="mt-3 text-center text-xs text-[var(--text-muted)] font-mono">
           {alt}
@@ -238,7 +240,6 @@ export default function BlogPostPage({
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }

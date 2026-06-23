@@ -70,7 +70,7 @@ export default function AnimatedSequence() {
           variants={card}
           className="rounded-xl border border-[var(--hairline)] bg-[var(--bg-elevated)] p-4"
         >
-          <p className="font-mono text-[8px] text-brand tracking-[0.2em] uppercase font-semibold mb-3">
+          <p className="font-mono text-[9px] text-brand tracking-[0.2em] uppercase font-semibold mb-3">
             Phase 1 · Tell Us What You Need
           </p>
           <div className="flex items-center gap-2.5 mb-3">
@@ -94,7 +94,7 @@ export default function AnimatedSequence() {
           variants={card}
           className="rounded-xl border border-[var(--hairline)] bg-[var(--bg-elevated)] p-4"
         >
-          <p className="font-mono text-[8px] text-brand tracking-[0.2em] uppercase font-semibold mb-4">
+          <p className="font-mono text-[9px] text-brand tracking-[0.2em] uppercase font-semibold mb-4">
             Phase 2 · We Build The Solution
           </p>
           <div className="flex items-center justify-between gap-2">
@@ -106,7 +106,7 @@ export default function AnimatedSequence() {
                   animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
                   transition={{ delay: reduce ? 0 : 0.8 + i * 0.18, duration: 0.35, ease: EASE }}
                 >
-                  <div className="w-10 h-10 bg-brand text-ink rounded-xl flex items-center justify-center">
+                  <div className="w-10 h-10 bg-brand text-white rounded-xl flex items-center justify-center">
                     {step.icon}
                   </div>
                   <span className="text-[9px] font-semibold text-[var(--text-secondary)]">
@@ -126,7 +126,7 @@ export default function AnimatedSequence() {
           variants={card}
           className="rounded-xl border border-[var(--hairline)] bg-[var(--bg-elevated)] p-4"
         >
-          <p className="font-mono text-[8px] text-brand tracking-[0.2em] uppercase font-semibold mb-4">
+          <p className="font-mono text-[9px] text-brand tracking-[0.2em] uppercase font-semibold mb-4">
             Phase 3 · You Scale
           </p>
           <div className="relative">
@@ -152,7 +152,7 @@ export default function AnimatedSequence() {
                     }`}
                   />
                   <span
-                    className={`text-[8px] font-semibold ${
+                    className={`text-[9px] font-semibold ${
                       i < 3 ? "text-brand" : "text-[var(--text-muted)]"
                     }`}
                   >

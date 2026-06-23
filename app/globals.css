@@ -8,19 +8,22 @@
     --bg: #faf8f5;
     --bg-elevated: #ffffff;
     --surface: rgba(20, 17, 14, 0.022);
-    --surface-hover: rgba(20, 17, 14, 0.04);
+    --surface-hover: rgba(20, 17, 14, 0.06);
     --hairline: rgba(20, 17, 14, 0.1);
     --hairline-strong: rgba(20, 17, 14, 0.16);
 
     --text-primary: #14110e;
     --text-secondary: #52504b;
-    --text-muted: #78756e;
+    --text-muted: #6b6860;
 
-    /* Deeper accent on light paper for legibility */
-    --accent-rgb: 215 64 24;
-    --accent-strong-rgb: 200 56 20;
-    --accent-glow: rgba(215, 64, 24, 0.18);
+    /* Teal accent — technology + trust */
+    --accent-rgb: 13 148 136;
+    --accent-strong-rgb: 20 184 166;
+    --accent-glow: rgba(13, 148, 136, 0.18);
     --ink-rgb: 10 10 15;
+
+    /* Orange CTA for urgency/conversion */
+    --cta-rgb: 234 88 12;
 
     --grid-line: rgba(20, 17, 14, 0.04);
     --grain-opacity: 0.015;
@@ -28,6 +31,23 @@
     /* Legacy aliases (kept so any stragglers stay on-theme) */
     --bg-surface: var(--surface);
     --border-brand: var(--hairline);
+
+    /* Typographic scale */
+    --font-size-xs: 0.75rem;      /* 12px — captions, tags */
+    --font-size-sm: 0.875rem;     /* 14px — secondary text, cards */
+    --font-size-base: 1rem;       /* 16px — body text, section descriptions */
+    --font-size-lg: 1.125rem;     /* 18px — subheadings, hero subtext */
+    --font-size-xl: 1.25rem;      /* 20px — card titles */
+    --font-size-2xl: 1.5rem;      /* 24px — h3 */
+    --font-size-3xl: 1.875rem;    /* 30px — h2 on mobile */
+    --font-size-4xl: 2.25rem;     /* 36px — h2 on desktop */
+
+    /* Line-height scale */
+    --leading-tight: 1.04;        /* display headlines */
+    --leading-snug: 1.25;         /* card titles, h3 */
+    --leading-normal: 1.5;        /* body text */
+    --leading-relaxed: 1.75;      /* long-form reading */
+    --leading-article: 1.8;       /* blog article paragraphs */
   }
 
   /* ---- Dark theme ---- */
@@ -35,18 +55,22 @@
     --bg: #0a0a0f;
     --bg-elevated: #111119;
     --surface: rgba(255, 255, 255, 0.025);
-    --surface-hover: rgba(255, 255, 255, 0.05);
+    --surface-hover: rgba(255, 255, 255, 0.07);
     --hairline: rgba(255, 255, 255, 0.08);
     --hairline-strong: rgba(255, 255, 255, 0.15);
 
     --text-primary: #f4f3ef;
     --text-secondary: #a7a7af;
-    --text-muted: #82828d;
+    --text-muted: #8c8c96;
 
-    --accent-rgb: 255 90 31;
-    --accent-strong-rgb: 255 106 44;
-    --accent-glow: rgba(255, 90, 31, 0.28);
+    /* Teal accent — technology + trust */
+    --accent-rgb: 20 184 166;
+    --accent-strong-rgb: 45 212 191;
+    --accent-glow: rgba(20, 184, 166, 0.28);
     --ink-rgb: 10 10 15;
+
+    /* Orange CTA for urgency/conversion */
+    --cta-rgb: 249 115 22;
 
     --grid-line: rgba(255, 255, 255, 0.035);
     --grain-opacity: 0.022;
@@ -153,7 +177,7 @@
 
   /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-ink shadow-accent-sm transition-all duration-200 hover:shadow-accent hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cta px-6 py-3 text-sm font-semibold text-white shadow-cta-sm transition-all duration-200 hover:shadow-cta hover:-translate-y-0.5;
   }
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all duration-200;

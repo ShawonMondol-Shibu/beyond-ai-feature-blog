@@ -15,6 +15,7 @@ const config: Config = {
         ink: "rgb(var(--ink-rgb) / <alpha-value>)",
         "dark-bg": "#0A0A0F",
         whatsapp: "#25d366",
+        cta: "rgb(var(--cta-rgb) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "-apple-system", "sans-serif"],
@@ -27,6 +28,8 @@ const config: Config = {
       boxShadow: {
         accent: "0 10px 40px -12px rgb(var(--accent-rgb) / 0.5)",
         "accent-sm": "0 6px 24px -10px rgb(var(--accent-rgb) / 0.45)",
+        cta: "0 10px 40px -12px rgb(var(--cta-rgb) / 0.5)",
+        "cta-sm": "0 6px 24px -10px rgb(var(--cta-rgb) / 0.45)",
         elevated: "0 24px 60px -28px rgba(0,0,0,0.55)",
       },
       keyframes: {
