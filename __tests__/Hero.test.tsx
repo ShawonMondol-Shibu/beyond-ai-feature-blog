@@ -8,6 +8,7 @@ jest.mock("@/components/AnimatedSequence", () => {
   };
 });
 
+
 test("renders the main headline", () => {
   render(<Hero />);
   expect(screen.getByText(/We don't just/i)).toBeInTheDocument();
@@ -32,3 +33,6 @@ test("renders stat: 10+ Services", () => {
   render(<Hero />);
   expect(screen.getByText("10+")).toBeInTheDocument();
 });
+
+
+

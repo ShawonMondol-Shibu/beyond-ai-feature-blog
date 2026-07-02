@@ -36,7 +36,7 @@ export default function Hero() {
         style={{ background: "radial-gradient(circle, var(--accent-glow), transparent 70%)" }}
       />
 
-      <div className="max-w-6xl mx-auto w-full px-6 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-center">
+      <div className="max-w-6xl mx-auto w-full px-6 md:px-10 py-20 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-20 items-center z-10">
         {/* Left column */}
         <div>
           <motion.p
@@ -60,7 +60,7 @@ export default function Hero() {
             <span className="text-[var(--text-muted)]">add AI</span> to your
             business.
             <br />
-            We <em className="text-brand">rebuild</em> it around&nbsp;it.
+            We <em className="text-brand">rebuild</em>&nbsp;it around&nbsp;it.
           </motion.h1>
 
           <motion.p
@@ -123,3 +123,7 @@ export default function Hero() {
     </section>
   );
 }
+
+
+
+

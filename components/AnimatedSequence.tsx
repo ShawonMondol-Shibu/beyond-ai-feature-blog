@@ -54,7 +54,7 @@ export default function AnimatedSequence() {
   const reduce = useReducedMotion();
 
   return (
-    <div ref={ref} className="rounded-3xl border border-[var(--hairline)] bg-[var(--surface)] p-5 shadow-elevated backdrop-blur-sm">
+    <div ref={ref} className="rounded-3xl border border-[var(--hairline)] bg-[var(--surface)] p-5 shadow-elevated backdrop-blur">
       <p className="font-mono text-[9px] text-[var(--text-muted)] tracking-[0.3em] uppercase mb-4">
         How It Works — Animated
       </p>

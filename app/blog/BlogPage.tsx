@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BlogMeta } from "@/lib/blog";
+import ViewTransition from "@/components/ViewTransition";
 
 type BlogPageProps = {
   featured: BlogMeta | null;
@@ -55,7 +56,7 @@ export default function BlogPage({ featured, rest }: BlogPageProps) {
                   {featured.date} · Latest
                 </p>
                 <h2 className="font-display text-2xl md:text-3xl text-[var(--text-primary)] group-hover:text-brand transition-colors duration-200 leading-tight mb-3">
-                  {featured.title}
+                  <ViewTransition name={`blog-title-${featured.slug}`}>{featured.title}</ViewTransition>
                 </h2>
                 <p className="text-[15px] text-[var(--text-secondary)] leading-relaxed mb-5">
                   {featured.description}
@@ -98,7 +99,7 @@ export default function BlogPage({ featured, rest }: BlogPageProps) {
                     {blog.date}
                   </p>
                   <h2 className="font-display text-xl text-[var(--text-primary)] group-hover:text-brand transition-colors duration-200 leading-snug mb-2.5 flex-1">
-                    {blog.title}
+                    <ViewTransition name={`blog-title-${blog.slug}`}>{blog.title}</ViewTransition>
                   </h2>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2 mb-5">
                     {blog.description}

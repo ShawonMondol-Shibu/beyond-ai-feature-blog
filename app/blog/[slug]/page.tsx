@@ -7,6 +7,7 @@ import Video from "@/components/Video";
 import { getBlogBySlug, getAllBlogs, extractHeadings } from "@/lib/blog";
 import { CONTACT } from "@/lib/constants";
 import TableOfContents from "./TableOfContents";
+import ViewTransition from "@/components/ViewTransition";
 
 export async function generateStaticParams() {
   const blogs = getAllBlogs();
@@ -16,9 +17,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
   if (!blog) return {};
 
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -145,12 +147,13 @@ const components = {
   Video,
 };
 
-export default function BlogPostPage({
+export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const blog = getBlogBySlug(params.slug);
+  const { slug } = await params;
+  const blog = getBlogBySlug(slug);
   if (!blog) notFound();
 
   const headings = extractHeadings(blog.content);
@@ -171,6 +174,7 @@ export default function BlogPostPage({
   };
 
   return (
+    <ViewTransition name="blog-post">
     <div className="min-h-screen bg-[var(--bg)]">
       <script
         type="application/ld+json"
@@ -192,7 +196,7 @@ export default function BlogPostPage({
             {blog.date} · {time} · {blog.author}
           </p>
           <h1 className="display text-[clamp(2.25rem,5vw,3.75rem)] text-[var(--text-primary)]">
-            {blog.title}
+            <ViewTransition name={`blog-title-${slug}`}>{blog.title}</ViewTransition>
           </h1>
           <p className="mt-6 text-lg text-[var(--text-secondary)] leading-relaxed">
             {blog.description}
@@ -241,5 +245,6 @@ export default function BlogPostPage({
       </main>
 
     </div>
+    </ViewTransition>
   );
 }

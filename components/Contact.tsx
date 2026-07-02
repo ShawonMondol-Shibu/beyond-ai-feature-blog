@@ -43,7 +43,7 @@ function IconMail() {
 }
 
 const inputClass =
-  "w-full px-4 py-3 text-sm bg-[var(--bg)] border border-[var(--hairline-strong)] rounded-lg text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors duration-200";
+  "w-full px-4 py-3 text-sm bg-[var(--bg)] backdrop-blur border border-[var(--hairline-strong)] rounded-lg text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition-colors duration-200";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -134,7 +134,7 @@ export default function Contact() {
           )}
         </Reveal>
 
-        {/* Quick Reach */}
+        {/* Quick Reach — frosted glass cards */}
         <Reveal delay={0.2} className="flex flex-col gap-4 justify-center">
           <a
             href={CONTACT.calendlyUrl}

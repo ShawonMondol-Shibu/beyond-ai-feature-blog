@@ -5,11 +5,11 @@ jest.mock("next-themes", () => ({
   useTheme: () => ({ resolvedTheme: "dark", setTheme: jest.fn() }),
 }));
 
-test("renders logo text", () => {
+test("renders logo image", () => {
   render(<Navbar />);
-  expect(screen.getByText("Beyond")).toBeInTheDocument();
-  expect(screen.getByText("AI")).toBeInTheDocument();
+  expect(screen.getByAltText("Beyond AI")).toBeInTheDocument();
 });
+
 
 test("renders all nav links", () => {
   render(<Navbar />);

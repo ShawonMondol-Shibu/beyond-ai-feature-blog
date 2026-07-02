@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { NAV_LINKS, CONTACT } from "@/lib/constants";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,13 +35,19 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 md:px-10 h-[72px] flex items-center justify-between">
-        {/* Wordmark */}
+        {/* Logo */}
         <Link
           href={isHome ? "#" : "/"}
-          className="flex items-baseline gap-1.5 font-display text-[1.45rem] leading-none tracking-tight text-[var(--text-primary)]"
+          className="flex items-center"
         >
-          <span>Beyond</span>
-          <span className="text-brand italic">AI</span>
+          <Image
+            src="/logo.png"
+            alt="Beyond AI"
+            width={140}
+            height={32}
+            className="h-8 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}

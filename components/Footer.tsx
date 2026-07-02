@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, CONTACT } from "@/lib/constants";
 import Link from "next/link";
+import Image from "next/image";
 
 function IconLinkedIn() {
   return (
@@ -19,13 +20,18 @@ export default function Footer() {
     href.startsWith("#") && !isHome ? `/${href}` : href;
 
   return (
-    <footer className="border-t border-[var(--hairline)] bg-[var(--bg-elevated)]">
+    <footer className="border-t border-[var(--hairline)] bg-[var(--bg-elevated)] backdrop-blur">
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
-          {/* Wordmark */}
-          <Link href={isHome ? "#" : "/"} className="flex items-baseline gap-1.5 font-display text-xl">
-            <span className="text-[var(--text-primary)]">Beyond</span>
-            <span className="text-brand italic">AI</span>
+          {/* Logo */}
+          <Link href={isHome ? "#" : "/"} className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Beyond AI"
+              width={120}
+              height={28}
+              className="h-7 w-auto"
+            />
           </Link>
 
           {/* Nav links */}

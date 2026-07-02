@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import PreServiceFraming from "@/components/PreServiceFraming";
 import Services from "@/components/Services";
 import HowItWorks from "@/components/HowItWorks";
 import WhyBeyondAI from "@/components/WhyBeyondAI";
@@ -11,6 +12,7 @@ export default function Page() {
     <main>
       <Hero />
       <About />
+      <PreServiceFraming />
       <Services />
       <HowItWorks />
       <WhyBeyondAI />

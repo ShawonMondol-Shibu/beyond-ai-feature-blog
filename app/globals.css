@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* View Transition API */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  animation: 0.35s ease-out both vt-fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 0.35s ease-out both vt-fade-in;
+}
+
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+}
+
 @layer base {
   /* ---- Light theme (default :root) ---- */
   :root {
@@ -165,9 +190,9 @@
     z-index: 1;
   }
 
-  /* Card surface */
+  /* Card surface — frosted glass */
   .surface-card {
-    @apply rounded-2xl border bg-[var(--surface)] transition-all duration-300;
+    @apply rounded-2xl border bg-[var(--surface)] backdrop-blur transition-all duration-300;
     border-color: var(--hairline);
   }
   .surface-card:hover {

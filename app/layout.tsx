@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ClientThreeBackground from "@/components/ClientThreeBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -43,9 +44,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Navbar/>
-          {children}
-          <Footer/>
+          <ClientThreeBackground />
+          <div className="relative z-10">
+            <Navbar/>
+            {children}
+            <Footer/>
+          </div>
         </ThemeProvider>
       </body>
     </html>
