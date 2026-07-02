@@ -45,7 +45,7 @@ export default function HowItWorks() {
                 transition={{ delay: 0.3 + i * 0.15, duration: 0.55, ease: EASE }}
                 className="flex flex-col items-center text-center"
               >
-                <div className="w-14 h-14 rounded-full border border-[var(--hairline-strong)] bg-[var(--bg)] flex items-center justify-center mb-5 relative z-10">
+                <div className="w-14 h-14 rounded-full border border-[var(--hairline-strong)] bg-[var(--bg)] backdrop-blur flex items-center justify-center mb-5 relative z-10">
                   <span className="font-mono text-[13px] font-medium text-brand tabular-nums">
                     {item.step}
                   </span>
@@ -72,7 +72,7 @@ export default function HowItWorks() {
               transition={{ delay: 0.2 + i * 0.12, duration: 0.45, ease: EASE }}
               className="flex gap-5 relative z-10"
             >
-              <div className="w-14 h-14 rounded-full border border-[var(--hairline-strong)] bg-[var(--bg)] flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 rounded-full border border-[var(--hairline-strong)] bg-[var(--bg)] backdrop-blur flex items-center justify-center flex-shrink-0">
                 <span className="font-mono text-xs font-medium text-brand tabular-nums">
                   {item.step}
                 </span>
