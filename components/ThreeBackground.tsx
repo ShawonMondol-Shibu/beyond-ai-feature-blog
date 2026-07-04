@@ -2,12 +2,13 @@
 
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { useTheme } from "next-themes";
 import * as THREE from "three";
 
 const TEAL = "#14B8A6";
 const ORANGE = "#F97316";
 
-function ParticleField({ count = 200 }: { count?: number }) {
+function ParticleField({ count = 200, theme }: { count?: number; theme?: string }) {
   const pointsRef = useRef<THREE.Points>(null);
   const speedRef = useRef(0.005);
 
@@ -16,8 +17,7 @@ function ParticleField({ count = 200 }: { count?: number }) {
     const col = new Float32Array(count * 3);
     const siz = new Float32Array(count);
 
-    const tealColor = new THREE.Color(TEAL);
-    const orangeColor = new THREE.Color(ORANGE);
+    const particleColor = new THREE.Color(theme === "dark" ? TEAL : ORANGE);
 
     for (let i = 0; i < count; i++) {
       const radius = 4 + Math.random() * 12;
@@ -28,15 +28,14 @@ function ParticleField({ count = 200 }: { count?: number }) {
       pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta) * 0.6;
       pos[i * 3 + 2] = radius * Math.cos(phi) - 4;
 
-      const mixColor = Math.random() > 0.5 ? tealColor : orangeColor;
-      col[i * 3] = mixColor.r;
-      col[i * 3 + 1] = mixColor.g;
-      col[i * 3 + 2] = mixColor.b;
+      col[i * 3] = particleColor.r;
+      col[i * 3 + 1] = particleColor.g;
+      col[i * 3 + 2] = particleColor.b;
 
       siz[i] = 0.04 + Math.random() * 0.08;
     }
     return [pos, col, siz];
-  }, [count]);
+  }, [count, theme]);
 
   useFrame((state) => {
     if (!pointsRef.current) return;
@@ -65,7 +64,7 @@ function ParticleField({ count = 200 }: { count?: number }) {
   );
 }
 
-function Scene() {
+function Scene({ theme }: { theme?: string }) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
@@ -82,12 +81,13 @@ function Scene() {
 
   return (
     <group ref={groupRef}>
-      <ParticleField count={200} />
+      <ParticleField count={200} theme={theme} />
     </group>
   );
 }
 
 export default function ThreeBackground() {
+  const { theme } = useTheme();
   return (
     <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden>
       <Canvas
@@ -96,7 +96,7 @@ export default function ThreeBackground() {
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
-        <Scene />
+        <Scene theme={theme} />
       </Canvas>
     </div>
   );

@@ -3,6 +3,7 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, OrbitControls } from "@react-three/drei";
+import { useTheme } from "next-themes";
 import * as THREE from "three";
 
 const TEAL = "#14B8A6";
@@ -90,15 +91,14 @@ function FloatingIcosahedron({ position, scale, speed, color }: { position: [num
   );
 }
 
-function ParticleField({ count = 80 }: { count?: number }) {
+function ParticleField({ count = 80, theme }: { count?: number; theme?: string }) {
   const pointsRef = useRef<THREE.Points>(null);
 
   const [positions, colors] = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const col = new Float32Array(count * 3);
     
-    const tealColor = new THREE.Color(TEAL);
-    const orangeColor = new THREE.Color(ORANGE);
+    const particleColor = new THREE.Color(theme === "dark" ? TEAL : ORANGE);
 
     for (let i = 0; i < count; i++) {
       // Random coordinates in a wider box
@@ -106,14 +106,12 @@ function ParticleField({ count = 80 }: { count?: number }) {
       pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 10 - 3; // spread in depth
 
-      // Interleave teal and orange particles
-      const mixColor = Math.random() > 0.5 ? tealColor : orangeColor;
-      col[i * 3] = mixColor.r;
-      col[i * 3 + 1] = mixColor.g;
-      col[i * 3 + 2] = mixColor.b;
+      col[i * 3] = particleColor.r;
+      col[i * 3 + 1] = particleColor.g;
+      col[i * 3 + 2] = particleColor.b;
     }
     return [pos, col];
-  }, [count]);
+  }, [count, theme]);
 
   useFrame((state, delta) => {
     if (pointsRef.current) {
@@ -148,7 +146,7 @@ function ParticleField({ count = 80 }: { count?: number }) {
   );
 }
 
-function Scene() {
+function Scene({ theme }: { theme?: string }) {
   const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
@@ -161,22 +159,24 @@ function Scene() {
     }
   });
 
+  const color = theme === "dark" ? TEAL : ORANGE;
+
   const objects = useMemo(() => [
-    { type: "octahedron" as const, position: [-4, 2, -5] as [number, number, number], scale: 0.6, speed: 0.4, color: TEAL },
-    { type: "torus" as const, position: [4, -1, -6] as [number, number, number], scale: 0.45, speed: 0.3, color: ORANGE },
-    { type: "icosahedron" as const, position: [-2, -2, -4] as [number, number, number], scale: 0.4, speed: 0.5, color: TEAL },
-    { type: "octahedron" as const, position: [3, 3, -7] as [number, number, number], scale: 0.7, speed: 0.25, color: ORANGE },
-    { type: "torus" as const, position: [-5, 0, -8] as [number, number, number], scale: 0.5, speed: 0.35, color: TEAL },
-    { type: "icosahedron" as const, position: [5, 1, -5] as [number, number, number], scale: 0.45, speed: 0.45, color: ORANGE },
-  ], []);
+    { type: "octahedron" as const, position: [-4, 2, -5] as [number, number, number], scale: 0.6, speed: 0.4, color },
+    { type: "torus" as const, position: [4, -1, -6] as [number, number, number], scale: 0.45, speed: 0.3, color },
+    { type: "icosahedron" as const, position: [-2, -2, -4] as [number, number, number], scale: 0.4, speed: 0.5, color },
+    { type: "octahedron" as const, position: [3, 3, -7] as [number, number, number], scale: 0.7, speed: 0.25, color },
+    { type: "torus" as const, position: [-5, 0, -8] as [number, number, number], scale: 0.5, speed: 0.35, color },
+    { type: "icosahedron" as const, position: [5, 1, -5] as [number, number, number], scale: 0.45, speed: 0.45, color },
+  ], [color]);
 
   return (
     <group ref={groupRef}>
       <ambientLight intensity={0.8} />
       <directionalLight position={[5, 5, 5]} intensity={0.6} />
-      <pointLight position={[-3, 2, 3]} intensity={1} color="#14B8A6" distance={12} />
-      <pointLight position={[3, -2, -3]} intensity={0.8} color="#F97316" distance={10} />
-      <ParticleField count={80} />
+      <pointLight position={[-3, 2, 3]} intensity={1} color={color} distance={12} />
+      <pointLight position={[3, -2, -3]} intensity={0.8} color={color} distance={10} />
+      <ParticleField count={80} theme={theme} />
       {objects.map((obj, i) => {
         if (obj.type === "octahedron") return <FloatingOctahedron key={i} {...obj} />;
         if (obj.type === "torus") return <FloatingTorus key={i} {...obj} />;
@@ -187,6 +187,7 @@ function Scene() {
 }
 
 export default function HeroBackground() {
+  const { theme } = useTheme();
   return (
     <div className="absolute inset-0 z-0 pointer-events-none">
       <Canvas
@@ -195,7 +196,7 @@ export default function HeroBackground() {
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
-        <Scene />
+        <Scene theme={theme} />
       </Canvas>
     </div>
   );

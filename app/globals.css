@@ -41,13 +41,13 @@
     --text-secondary: #52504b;
     --text-muted: #6b6860;
 
-    /* Teal accent — technology + trust */
-    --accent-rgb: 13 148 136;
-    --accent-strong-rgb: 20 184 166;
-    --accent-glow: rgba(13, 148, 136, 0.18);
+    /* Orange accent — warmth + energy */
+    --accent-rgb: 234 88 12;
+    --accent-strong-rgb: 249 115 22;
+    --accent-glow: rgba(234, 88, 12, 0.18);
     --ink-rgb: 10 10 15;
 
-    /* Orange CTA for urgency/conversion */
+    /* CTA matches accent — single color system */
     --cta-rgb: 234 88 12;
 
     --grid-line: rgba(20, 17, 14, 0.04);
@@ -94,8 +94,8 @@
     --accent-glow: rgba(20, 184, 166, 0.28);
     --ink-rgb: 10 10 15;
 
-    /* Orange CTA for urgency/conversion */
-    --cta-rgb: 249 115 22;
+    /* CTA matches accent — single color system */
+    --cta-rgb: 20 184 166;
 
     --grid-line: rgba(255, 255, 255, 0.035);
     --grain-opacity: 0.022;
@@ -107,6 +107,7 @@
 
   html {
     scroll-behavior: smooth;
+    @apply font-sans;
   }
 
   body {
